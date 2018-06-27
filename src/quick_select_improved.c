@@ -27,9 +27,9 @@ int quick_select(int A[], int n, int k){
         A[j-1]=pivot;
     }
     for(i=j;i<n;i++)if(A[i]==pivot){A[i]=A[j-1+numpivot];A[j-1+numpivot]=pivot;numpivot++;}
-    if(j < k+1)return quick_select(A+j, n-j, k-j);
-    if(j == k+1) return pivot;
-    if(j+numpivot-1>k+1)return quick_select(A, j+numpivot-1-1, k);
+    if(j+numpivot-1 < k+1)return quick_select(A+j+numpivot-1, n-(j+numpivot-1), k-(j+numpivot-1));
+    if(j>k+1)return quick_select(A, j-1, k);
+    return pivot;
 }
 
 int main(){
@@ -37,8 +37,8 @@ int main(){
     A[0] = 0;
     A[1] = 3; //原始元
     for(i=2;i<N;i++){
-        // A[i] = (long long int) A[i-1] * A[1] % N;
-        A[i]=3;
+         A[i] = (long long int) A[i-1] * A[1] % N;
+        //A[i]=3;
     }
     for(i=0;i<N;i++){
         // if(quick_select(A, N, i) != i) printf("ERROR %d %d\n", i, quick_select(A, N, i));
