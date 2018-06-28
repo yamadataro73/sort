@@ -17,11 +17,11 @@ int quick_select(int A[], int n, int k){
     
     int i, j, pivot;
     int bunkatu=(n+4)/5;
-    int Aprime[bunkatu];
-    for(i=0;i<bunkatu;i++)Aprime[i]=quick_select(A+5*i,5*bunkatu>n?n%5:5 , (5*bunkatu>n?n%5:5)/2);
+    int Aprime[N]; //ほんとはArime[bunkatu]としたい気持ちだがGCC拡張なので使えない
+    for(i=0;i<bunkatu;i++)Aprime[i]=quick_select(A+5*i,5*(i+i)>n?n%5:5 , (5*(i+1)>n?n%5:5)/2);
     // 先頭の要素をピボットとする
     pivot = quick_select(Aprime,bunkatu,bunkatu/2);
-    for(i=0;i<n;i++)if(A[i]==pivot){A[i]=A[0];A[0]=pivot;break;}
+    for(i=0;i<n;i++)if(A[i]==pivot){A[i]=A[0];A[0]=pivot;break;}//quick_selectがインデックスを返してくれればいいのに←わかる
     
     for(i = j = 1; i < n; i++){
         if(A[i] <= pivot){
